@@ -74,19 +74,19 @@ body {
     box-shadow: 1px 2px 4px var(--shadow);
 }
 
-.board__3x3 {
+.board__easy {
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(3, 1fr);
     max-width: 30%;
 }
 
-.board__7x5 {
+.board__medium {
     grid-template-columns: repeat(7, 1fr);
     grid-template-rows: repeat(5, 1fr);
     max-width: 50%;
 }
 
-.board__15x6 {
+.board__difficult {
     grid-template-columns: repeat(15, 1fr);
     grid-template-rows: repeat(6, 1fr);
     max-width: 100%;
@@ -136,7 +136,7 @@ body {
 .btn__panel {
     display: flex;
     justify-content: center;
-    gap: 1rem;
+    gap: 2rem;
     position: absolute;
     left: 50%;
     bottom: 2rem;
@@ -147,6 +147,7 @@ body {
 .mediumBtn,
 .difficultBtn,
 .resetBtn {
+    width: 14rem;
     margin-top: 2rem;
     padding: 0.7rem 3rem;
     text-transform: uppercase;
@@ -188,11 +189,22 @@ body {
 
 .resetBtn {
     background-color: var(--resetBtn);
-    display: none;
 }
 
 .resetBtn:hover {
     background-color: var(--resetBtn-darker);
+}
+
+.chosen {
+    transform: scale(1.2);
+}
+
+.btn__panel.focus button:not(.chosen) {
+    filter: brightness(0.4);
+}
+
+.hidden {
+    display: none;
 }
 
 .right {
