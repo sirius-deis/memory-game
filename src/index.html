@@ -18,66 +18,27 @@
                 </div>
 
                 <div class="board board__easy">
-                    <div class="card">
-                        <div class="card__container">
-                            <div class="card__front"></div>
-                            <div class="card__back">🐃</div>
+                    <template class="card__template">
+                        <div class="card">
+                            <div class="card__container">
+                                <div class="card__front"></div>
+                                <div class="card__back"></div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="card">
-                        <div class="card__container">
-                            <div class="card__front"></div>
-                            <div class="card__back">🦁</div>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="card__container">
-                            <div class="card__front"></div>
-                            <div class="card__back">🐂</div>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="card__container">
-                            <div class="card__front"></div>
-                            <div class="card__back">🐨</div>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="card__container">
-                            <div class="card__front"></div>
-                            <div class="card__back">🐃</div>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="card__container">
-                            <div class="card__front"></div>
-                            <div class="card__back">🦁</div>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="card__container">
-                            <div class="card__front"></div>
-                            <div class="card__back">🐂</div>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="card__container">
-                            <div class="card__front"></div>
-                            <div class="card__back">🐨</div>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="card__container">
-                            <div class="card__front"></div>
-                            <div class="card__back">🐃</div>
-                        </div>
-                    </div>
+                    </template>
                 </div>
                 <div class="btn__panel">
                     <button class="easyBtn" data-name="easy">easy</button>
                     <button class="mediumBtn" data-name="medium">medium</button>
                     <button class="difficultBtn" data-name="difficult">difficult</button>
                     <button class="resetBtn hidden">reset</button>
+                    <div class="dialog hidden">
+                        <div class="dialog__text">Are you sure?</div>
+                        <div class="dialog__btn">
+                            <button class="dialog__yes">Yes</button>
+                            <button class="dialog__no">No</button>
+                        </div>
+                    </div>
                 </div>
             </section>
             <div class="right"></div>

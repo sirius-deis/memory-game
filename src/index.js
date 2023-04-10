@@ -5,7 +5,8 @@ const boardEl = document.querySelector(".board"),
     easyBtn = document.querySelector(".easyBtn"),
     mediumBtn = document.querySelector(".mediumBtn"),
     difficultBtn = document.querySelector(".difficultBtn"),
-    resetBtn = document.querySelector(".resetBtn");
+    resetBtn = document.querySelector(".resetBtn"),
+    dialog = document.querySelector(".dialog");
 
 let emojiList = "",
     difficulty = "";
@@ -27,6 +28,12 @@ const focusOnBtnPanel = () => {
     btnPanel.classList.add("focus");
 };
 
+const showDifficultyButtons = () => {
+    [easyBtn, mediumBtn, difficultBtn].forEach((btn) => {
+        btn.classList.remove("hidden");
+    });
+};
+
 const hideDifficultyButtons = () => {
     [easyBtn, mediumBtn, difficultBtn].forEach((btn) => {
         btn.classList.add("hidden");
@@ -37,22 +44,58 @@ const showResetBtn = () => {
     resetBtn.classList.remove("hidden");
 };
 
+const hideResetBtn = () => {
+    resetBtn.classList.add("hidden");
+};
+
+const chooseBtn = (el, text) => {
+    resetPanel();
+    focusOnBtnPanel();
+    el.dataset.chosen = true;
+    el.textContent = text;
+    el.classList.add("chosen");
+};
+
+const showDialog = () => {
+    dialog.classList.remove("hidden");
+};
+
+const hideDialog = () => {
+    dialog.classList.add("hidden");
+};
+
+const reset = () => {
+    hideResetBtn();
+    resetPanel();
+    showDifficultyButtons();
+};
+
 [easyBtn, mediumBtn, difficultBtn].forEach((btn) => {
-    btn.addEventListener("click", (e) => {
-        if (e.target.dataset.chosen) {
-            resetBoard();
-            difficulty = e.target.dataset.name;
-            boardEl.classList.add(`board__${difficulty}`);
-            hideDifficultyButtons();
-            showResetBtn();
-        } else {
-            resetPanel();
-            e.target.dataset.chosen = true;
-            e.target.textContent = "start";
-            e.target.classList.add("chosen");
-            focusOnBtnPanel();
+    btn.addEventListener("click", ({ target }) => {
+        if (!target.dataset.chosen) {
+            chooseBtn(target, "start");
+            return;
         }
+        resetBoard();
+        difficulty = target.dataset.name;
+        boardEl.classList.add(`board__${difficulty}`);
+        hideDifficultyButtons();
+        showResetBtn();
+        start();
     });
+});
+
+resetBtn.addEventListener("click", ({ target }) => {
+    showDialog();
+});
+
+dialog.querySelector(".dialog__yes").addEventListener("click", () => {
+    reset();
+    hideDialog();
+});
+
+dialog.querySelector(".dialog__no").addEventListener("click", () => {
+    hideDialog();
 });
 
 const fetchEmojiList = async (url) => {
@@ -62,7 +105,7 @@ const fetchEmojiList = async (url) => {
 };
 
 const start = () => {
-    createBoard(emojiList, "easy");
+    createBoard(emojiList, difficulty);
 };
 
 fetchEmojiList("/public/animals.txt");
