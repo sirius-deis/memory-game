@@ -9,11 +9,12 @@ const options = {
 
 let chosenCards = [];
 let amountOfCells;
-let timer;
+let increaseFunction;
 
-export const createBoard = (set, difficulty) => {
+export const createBoard = (set, difficulty, increaseMoves) => {
     const chosenDifficulty = options[difficulty];
     amountOfCells = chosenDifficulty[0] * chosenDifficulty[1];
+    increaseFunction = increaseMoves;
     const cardsSet = chooseCardsFromSet(set, amountOfCells / 2);
     const doubledCardSetShuffled = sortRandomly(cardsSet.concat(cardsSet));
     formCards(doubledCardSetShuffled, chosenDifficulty[0]);
@@ -64,22 +65,23 @@ const hideCards = (arrOfCards) => {
 
 const markCardsAsMatched = (arrOfCards) => {
     arrOfCards.forEach((card) => {
-        card.firstElementChild.lastElementChild.classList.add("match");
+        card.classList.add("match");
     });
 };
 
 board.addEventListener("click", (e) => {
     const el = e.target.closest(".card");
     if (!el) return;
-    if (el.classList.contains("open")) {
+    if (el.classList.contains("open") && !el.classList.contains("match")) {
         return el.classList.remove("open");
     }
     el.classList.add("open");
     chosenCards.push(el);
+    increaseFunction();
     if (chosenCards.length === 2) {
-        const isMatch = checkIfItsMatch(chosenCards);
         const copyOfChosenCards = [...chosenCards];
         chosenCards = [];
+        const isMatch = checkIfItsMatch(copyOfChosenCards);
         if (isMatch) {
             markCardsAsMatched(copyOfChosenCards);
             amountOfCells -= 2;
@@ -87,9 +89,12 @@ board.addEventListener("click", (e) => {
                 removeCardsFromField(copyOfChosenCards);
             }, 1000);
         } else {
-            timer = setTimeout(() => {
+            setTimeout(() => {
                 hideCards(copyOfChosenCards);
             }, 1000);
         }
+    }
+    if (amountOfCells === 0) {
+        //#TODO:
     }
 });

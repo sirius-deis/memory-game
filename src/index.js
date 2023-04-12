@@ -6,10 +6,12 @@ const boardEl = document.querySelector(".board"),
     mediumBtn = document.querySelector(".mediumBtn"),
     difficultBtn = document.querySelector(".difficultBtn"),
     resetBtn = document.querySelector(".resetBtn"),
-    dialog = document.querySelector(".dialog");
+    dialog = document.querySelector(".dialog"),
+    moves = document.querySelector(".moves");
 
 let emojiList = "",
-    difficulty = "easy";
+    difficulty = "easy",
+    moveAmount = 0;
 
 const resetPanel = () => {
     btnPanel.classList.remove("focus");
@@ -68,6 +70,12 @@ const reset = () => {
     hideResetBtn();
     resetPanel();
     showDifficultyButtons();
+    moveAmount = 0;
+    moves.textContent = moveAmount;
+};
+
+const increaseMoves = () => {
+    moves.textContent = ++moveAmount;
 };
 
 [easyBtn, mediumBtn, difficultBtn].forEach((btn) => {
@@ -106,7 +114,7 @@ const fetchEmojiList = async (url) => {
 };
 
 const start = () => {
-    createBoard(emojiList, difficulty);
+    createBoard(emojiList, difficulty, increaseMoves);
 };
 
 fetchEmojiList("/public/animals.txt");
