@@ -9,7 +9,7 @@ const boardEl = document.querySelector(".board"),
     dialog = document.querySelector(".dialog");
 
 let emojiList = "",
-    difficulty = "";
+    difficulty = "easy";
 
 const resetPanel = () => {
     btnPanel.classList.remove("focus");
@@ -102,6 +102,7 @@ const fetchEmojiList = async (url) => {
     const response = await fetch(url);
     const data = await response.text();
     emojiList = data;
+    start();
 };
 
 const start = () => {

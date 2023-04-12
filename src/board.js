@@ -7,9 +7,13 @@ const options = {
     difficult: [15, 6],
 };
 
+let chosenCards = [];
+let amountOfCells;
+let timer;
+
 export const createBoard = (set, difficulty) => {
     const chosenDifficulty = options[difficulty];
-    const amountOfCells = chosenDifficulty[0] * chosenDifficulty[1];
+    amountOfCells = chosenDifficulty[0] * chosenDifficulty[1];
     const cardsSet = chooseCardsFromSet(set, amountOfCells / 2);
     const doubledCardSetShuffled = sortRandomly(cardsSet.concat(cardsSet));
     formCards(doubledCardSetShuffled, chosenDifficulty[0]);
@@ -39,3 +43,53 @@ const chooseCardsFromSet = (set, amount) => {
 const sortRandomly = (arr) => {
     return arr.sort(() => Math.random() - 0.5);
 };
+
+const checkIfItsMatch = (arrOfCards) => {
+    const firstCardEmoji = arrOfCards[0].querySelector(".card__back");
+    const secondCardEmoji = arrOfCards[1].querySelector(".card__back");
+    return firstCardEmoji.textContent === secondCardEmoji.textContent;
+};
+
+const removeCardsFromField = (arrOfCards) => {
+    arrOfCards.forEach((card) => {
+        card.remove();
+    });
+};
+
+const hideCards = (arrOfCards) => {
+    arrOfCards.forEach((card) => {
+        card.classList.remove("open");
+    });
+};
+
+const markCardsAsMatched = (arrOfCards) => {
+    arrOfCards.forEach((card) => {
+        card.firstElementChild.lastElementChild.classList.add("match");
+    });
+};
+
+board.addEventListener("click", (e) => {
+    const el = e.target.closest(".card");
+    if (!el) return;
+    if (el.classList.contains("open")) {
+        return el.classList.remove("open");
+    }
+    el.classList.add("open");
+    chosenCards.push(el);
+    if (chosenCards.length === 2) {
+        const isMatch = checkIfItsMatch(chosenCards);
+        const copyOfChosenCards = [...chosenCards];
+        chosenCards = [];
+        if (isMatch) {
+            markCardsAsMatched(copyOfChosenCards);
+            amountOfCells -= 2;
+            setTimeout(() => {
+                removeCardsFromField(copyOfChosenCards);
+            }, 1000);
+        } else {
+            timer = setTimeout(() => {
+                hideCards(copyOfChosenCards);
+            }, 1000);
+        }
+    }
+});
