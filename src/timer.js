@@ -5,10 +5,12 @@ let time = 0;
 let intervalId;
 
 export const startTimer = () => {
-    intervalId = setInterval(() => {
-        time++;
-        updateTimerEl(time);
-    }, 1000);
+    intervalId = setInterval(update, 1000);
+};
+
+const update = () => {
+    time++;
+    updateTimerEl(time);
 };
 
 const updateTimerEl = (time) => {
@@ -26,4 +28,8 @@ const formatTime = (time) => {
 
 const addZeroBeforeIfRequired = (number) => {
     return number < 10 ? `0${number}` : number;
+};
+
+export const stopTimer = () => {
+    clearInterval(intervalId);
 };

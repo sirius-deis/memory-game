@@ -95,6 +95,6 @@ board.addEventListener("click", (e) => {
         }
     }
     if (amountOfCells === 0) {
-        //#TODO:
+        increaseFunction(true);
     }
 });

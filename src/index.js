@@ -1,5 +1,5 @@
 import { createBoard } from "./board";
-import { startTimer } from "./timer";
+import { startTimer, stopTimer } from "./timer";
 
 const boardEl = document.querySelector(".board"),
     btnPanel = document.querySelector(".btn__panel"),
@@ -75,7 +75,10 @@ const reset = () => {
     moves.textContent = moveAmount;
 };
 
-const increaseMoves = () => {
+const increaseMoves = (isEnd) => {
+    if (isEnd) {
+        stopTimer();
+    }
     moves.textContent = ++moveAmount;
 };
 
