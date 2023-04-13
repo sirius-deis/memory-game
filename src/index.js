@@ -73,6 +73,7 @@ const reset = () => {
     showDifficultyButtons();
     moveAmount = 0;
     moves.textContent = moveAmount;
+    stopTimer();
 };
 
 const increaseMoves = (isEnd) => {

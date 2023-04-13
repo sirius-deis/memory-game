@@ -1,10 +1,11 @@
 const timerEl = document.querySelector(".timer");
 
-let time = 0;
+let time;
 
 let intervalId;
 
 export const startTimer = () => {
+    time = 0;
     intervalId = setInterval(update, 1000);
 };
 
