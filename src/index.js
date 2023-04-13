@@ -1,4 +1,5 @@
 import { createBoard } from "./board";
+import { startTimer } from "./timer";
 
 const boardEl = document.querySelector(".board"),
     btnPanel = document.querySelector(".btn__panel"),
@@ -115,6 +116,7 @@ const fetchEmojiList = async (url) => {
 
 const start = () => {
     createBoard(emojiList, difficulty, increaseMoves);
+    startTimer();
 };
 
 fetchEmojiList("/public/animals.txt");
