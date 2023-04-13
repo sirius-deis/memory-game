@@ -25,6 +25,11 @@
 body {
     background-color: var(--bg);
     height: 100vh;
+    color: var(--text);
+}
+
+.hidden {
+    display: none;
 }
 
 .container {
@@ -33,10 +38,6 @@ body {
     height: 100%;
     position: relative;
     padding: 2rem 0;
-}
-
-.center {
-    color: var(--text);
 }
 
 .header {
@@ -68,13 +69,48 @@ body {
 .board {
     min-height: 40rem;
     margin: 0 auto;
+    position: relative;
+    padding: 2rem;
+    box-shadow: 1px 2px 4px var(--shadow);
+    transition: all ease-in-out 0.25s;
+}
+
+.board__greeting {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    backdrop-filter: blur(10px);
+}
+
+.loader {
+    width: 12rem;
+    height: 12rem;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    border-top: 1rem solid var(--mediumBtn-darker);
+    border-bottom: 1rem solid var(--easyBtn-darker);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+    100% {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+}
+
+.board__container {
     display: grid;
     justify-items: center;
     align-items: center;
     gap: 1rem;
-    position: relative;
-    padding: 2rem;
-    box-shadow: 1px 2px 4px var(--shadow);
 }
 
 .board__easy {
@@ -127,6 +163,10 @@ body {
 
 .card__front {
     background-color: var(--front);
+}
+
+.card__front:hover {
+    background-color: var(--text);
 }
 
 .card__back {

@@ -1,5 +1,5 @@
-const board = document.querySelector(".board"),
-    cardTemplate = document.querySelector(".card__template");
+const boardContainer = document.querySelector(".board__container"),
+    cardTemplate = boardContainer.querySelector(".card__template");
 
 const options = {
     easy: [4, 4],
@@ -20,8 +20,12 @@ export const createBoard = (set, difficulty, increaseMoves) => {
     formCards(doubledCardSetShuffled, chosenDifficulty[0]);
 };
 
+export const formEmptyBoard = () => {
+    formCards(new Array(16).fill(""), options.easy[0]);
+};
+
 const formCards = (arrayOfCards, width) => {
-    board.innerHTML = "";
+    boardContainer.innerHTML = "";
     arrayOfCards.forEach((card, i) => {
         formSingleCard(card, width, i);
     });
@@ -33,7 +37,7 @@ const formSingleCard = (card, width, i) => {
     const cartEl = cardClone.querySelector(".card");
     cartEl.style.gridColumn = `${(i % width) + 1}`;
     cartEl.style.gridRow = `${Math.floor(i / width) + 1}`;
-    board.append(cardClone);
+    boardContainer.append(cardClone);
 };
 
 const chooseCardsFromSet = (set, amount) => {
@@ -69,7 +73,7 @@ const markCardsAsMatched = (arrOfCards) => {
     });
 };
 
-board.addEventListener("click", (e) => {
+boardContainer.addEventListener("click", (e) => {
     const el = e.target.closest(".card");
     if (!el) return;
     if (el.classList.contains("open") && !el.classList.contains("match")) {

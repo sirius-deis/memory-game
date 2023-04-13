@@ -13,19 +13,24 @@
             <section class="center">
                 <h1 class="header">Memory game</h1>
                 <div class="info">
-                    <div class="timer">02:34</div>
+                    <div class="timer">00:00</div>
                     <div class="moves">0</div>
                 </div>
 
                 <div class="board board__easy">
-                    <template class="card__template">
-                        <div class="card">
-                            <div class="card__container">
-                                <div class="card__front"></div>
-                                <div class="card__back"></div>
+                    <div class="board__container">
+                        <template class="card__template">
+                            <div class="card">
+                                <div class="card__container">
+                                    <div class="card__front"></div>
+                                    <div class="card__back"></div>
+                                </div>
                             </div>
-                        </div>
-                    </template>
+                        </template>
+                    </div>
+                    <div class="board__greeting">
+                        <div class="loader"></div>
+                    </div>
                 </div>
                 <div class="btn__panel">
                     <button class="easyBtn" data-name="easy">easy</button>

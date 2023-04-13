@@ -6,6 +6,7 @@ let intervalId;
 
 export const startTimer = () => {
     time = 0;
+    updateTimerEl(time);
     intervalId = setInterval(update, 1000);
 };
 

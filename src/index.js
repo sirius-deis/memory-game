@@ -1,7 +1,9 @@
-import { createBoard } from "./board";
+import { createBoard, formEmptyBoard } from "./board";
 import { startTimer, stopTimer } from "./timer";
 
 const boardEl = document.querySelector(".board"),
+    boardGreetingEl = document.querySelector(".board__greeting"),
+    loaderEl = document.querySelector(".loader"),
     btnPanel = document.querySelector(".btn__panel"),
     easyBtn = document.querySelector(".easyBtn"),
     mediumBtn = document.querySelector(".mediumBtn"),
@@ -74,6 +76,7 @@ const reset = () => {
     moveAmount = 0;
     moves.textContent = moveAmount;
     stopTimer();
+    blurBoard();
 };
 
 const increaseMoves = (isEnd) => {
@@ -95,6 +98,7 @@ const increaseMoves = (isEnd) => {
         hideDifficultyButtons();
         showResetBtn();
         start();
+        unblurBoard();
     });
 });
 
@@ -111,11 +115,24 @@ dialog.querySelector(".dialog__no").addEventListener("click", () => {
     hideDialog();
 });
 
+const hideLoader = () => {
+    loaderEl.classList.add("hidden");
+};
+
+const blurBoard = () => {
+    boardGreetingEl.classList.remove("hidden");
+};
+
+const unblurBoard = () => {
+    boardGreetingEl.classList.add("hidden");
+};
+
 const fetchEmojiList = async (url) => {
     const response = await fetch(url);
     const data = await response.text();
     emojiList = data;
-    start();
+    hideLoader();
+    formEmptyBoard();
 };
 
 const start = () => {
