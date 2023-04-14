@@ -28,12 +28,12 @@ const renderPagination = () => {};
  */
 export const saveToStore = (entry) => {
     score.push(entry);
-    localStorage.setItem("score", score);
+    localStorage.setItem("score", JSON.stringify(score));
     updateScoreList(score);
 };
 
 export const retrieveFromStore = () => {
-    score = localStorage.getItem("score");
+    score = JSON.parse(localStorage.getItem("score"));
     updateScoreList(score);
 };
 
