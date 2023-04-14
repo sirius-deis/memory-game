@@ -384,6 +384,10 @@ body {
     align-items: center;
 }
 
+.pagination__numbers {
+    display: flex;
+}
+
 .pagination__item {
     padding: 1rem 1.5rem;
     border: 0;

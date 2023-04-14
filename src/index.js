@@ -11,7 +11,8 @@ const boardContainerEl = document.querySelector(".board__container"),
     difficultBtn = document.querySelector(".difficultBtn"),
     resetBtn = document.querySelector(".resetBtn"),
     dialog = document.querySelector(".dialog"),
-    moves = document.querySelector(".moves");
+    moves = document.querySelector(".moves"),
+    dataInput = document.querySelector(".data__input");
 
 let emojiList = "",
     difficulty = "easy",
