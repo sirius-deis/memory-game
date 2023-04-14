@@ -9,7 +9,12 @@
     </head>
     <body>
         <div class="container">
-            <div class="left"></div>
+            <div class="left">
+                <div class="info">
+                    <label for="name">Name</label>
+                    <input type="text" placeholder="Enter your name" name="name" id="name" />
+                </div>
+            </div>
             <section class="center">
                 <h1 class="header">Memory game</h1>
                 <div class="info">
@@ -47,7 +52,37 @@
                     </div>
                 </div>
             </section>
-            <div class="right"></div>
+            <div class="right">
+                <div class="wrapper">
+                    <header class="tab">
+                        <button class="tab__btn">Easy</button>
+                        <button class="tab__btn">Medium</button>
+                        <button class="tab__btn">Difficult</button>
+                    </header>
+                    <div class="content">
+                        <ul class="content__list">
+                            <li class="content__item">1.Name</li>
+                            <li class="content__item">2.Name</li>
+                            <li class="content__item">3.Name</li>
+                            <li class="content__item">4.Name</li>
+                            <li class="content__item">5.Name</li>
+                            <li class="content__item">6.Name</li>
+                            <li class="content__item">7.Name</li>
+                            <li class="content__item">8.Name</li>
+                            <li class="content__item">9.Name</li>
+                            <li class="content__item">10.Name</li>
+                        </ul>
+                    </div>
+                    <div class="pagination">
+                        <button class="pagination__item">&laquo;</button>
+                        <button class="pagination__item active">1</button>
+                        <button class="pagination__item">2</button>
+                        <button class="pagination__item">3</button>
+                        <button class="pagination__item">4</button>
+                        <button class="pagination__item">&raquo;</button>
+                    </div>
+                </div>
+            </div>
         </div>
     </body>
 </html>
