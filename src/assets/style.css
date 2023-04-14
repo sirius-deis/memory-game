@@ -20,6 +20,8 @@
     --difficultBtn-darker: #b91c1c;
     --resetBtn: #6366f1;
     --resetBtn-darker: #4338ca;
+    --card-width: 7rem;
+    --card-height: 10rem;
 }
 
 body {
@@ -67,12 +69,9 @@ body {
 }
 
 .board {
-    min-height: 40rem;
-    margin: 0 auto;
+    display: flex;
+    justify-content: center;
     position: relative;
-    padding: 2rem;
-    box-shadow: 1px 2px 4px var(--shadow);
-    transition: all ease-in-out 0.25s;
 }
 
 .board__greeting {
@@ -82,6 +81,18 @@ body {
     bottom: 0;
     right: 0;
     backdrop-filter: blur(10px);
+}
+
+.win {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    padding: 2rem;
+    background-color: var(--bg-dark);
+    color: var(--bg);
+    font-size: 2rem;
+    text-align: center;
+    transform: translate(-50%, -50%);
 }
 
 .loader {
@@ -111,29 +122,30 @@ body {
     justify-items: center;
     align-items: center;
     gap: 1rem;
+    margin: 0 auto;
+    padding: 2rem;
+    background-color: var(--back);
+    box-shadow: 1px 2px 4px var(--shadow);
 }
 
 .board__easy {
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(4, 1fr);
-    max-width: 30%;
+    grid-template-columns: repeat(4, var(--card-width));
+    grid-template-rows: repeat(4, var(--card-height));
 }
 
 .board__medium {
-    grid-template-columns: repeat(8, 1fr);
-    grid-template-rows: repeat(5, 1fr);
-    max-width: 55%;
+    grid-template-columns: repeat(8, var(--card-width));
+    grid-template-rows: repeat(5, var(--card-height));
 }
 
 .board__difficult {
-    grid-template-columns: repeat(15, 1fr);
-    grid-template-rows: repeat(6, 1fr);
-    max-width: 100%;
+    grid-template-columns: repeat(15, var(--card-width));
+    grid-template-rows: repeat(6, var(--card-height));
 }
 
 .card {
-    width: 7rem;
-    height: 10rem;
+    width: var(--card-width);
+    height: var(--card-height);
     perspective: 1000px;
     text-align: center;
 }

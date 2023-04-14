@@ -1,8 +1,9 @@
 import { createBoard, formEmptyBoard } from "./board";
 import { startTimer, stopTimer } from "./timer";
 
-const boardEl = document.querySelector(".board"),
+const boardContainerEl = document.querySelector(".board__container"),
     boardGreetingEl = document.querySelector(".board__greeting"),
+    winEl = document.querySelector(".win"),
     loaderEl = document.querySelector(".loader"),
     btnPanel = document.querySelector(".btn__panel"),
     easyBtn = document.querySelector(".easyBtn"),
@@ -26,7 +27,7 @@ const resetPanel = () => {
 };
 
 const resetBoard = () => {
-    boardEl.classList.remove(`board__${difficulty}`);
+    boardContainerEl.classList.remove(`board__${difficulty}`);
 };
 
 const focusOnBtnPanel = () => {
@@ -80,10 +81,12 @@ const reset = () => {
 };
 
 const increaseMoves = (isEnd) => {
+    moves.textContent = ++moveAmount;
     if (isEnd) {
         stopTimer();
+        blurBoard();
+        showWinMsg();
     }
-    moves.textContent = ++moveAmount;
 };
 
 [easyBtn, mediumBtn, difficultBtn].forEach((btn) => {
@@ -94,7 +97,7 @@ const increaseMoves = (isEnd) => {
         }
         resetBoard();
         difficulty = target.dataset.name;
-        boardEl.classList.add(`board__${difficulty}`);
+        boardContainerEl.classList.add(`board__${difficulty}`);
         hideDifficultyButtons();
         showResetBtn();
         start();
@@ -114,6 +117,14 @@ dialog.querySelector(".dialog__yes").addEventListener("click", () => {
 dialog.querySelector(".dialog__no").addEventListener("click", () => {
     hideDialog();
 });
+
+const showWinMsg = () => {
+    winEl.classList.remove("hidden");
+};
+
+const hideWinMsg = () => {
+    winEl.classList.add("hidden");
+};
 
 const hideLoader = () => {
     loaderEl.classList.add("hidden");
@@ -137,6 +148,7 @@ const fetchEmojiList = async (url) => {
 
 const start = () => {
     createBoard(emojiList, difficulty, increaseMoves);
+    hideWinMsg();
     startTimer();
 };
 
