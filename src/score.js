@@ -1,9 +1,20 @@
-const contentContainer = document.querySelector(".content__list"),
+const tabContainer = document.querySelector(".tab"),
+    contentContainer = document.querySelector(".content__list"),
     leftArrow = document.querySelector(".pagination").firstElementChild,
     rightArrow = document.querySelector(".pagination").lastElementChild,
     paginationContainer = document.querySelector(".pagination__numbers");
 
 const score = [];
+let chosenDifficulty = "";
+
+tabContainer.addEventListener("click", (e) => {
+    const el = e.target.closest(".tab__btn");
+    if (!el) {
+        return;
+    }
+    chosenDifficulty = el.textContent.toLowerCase();
+    console.log(chosenDifficulty);
+});
 
 const updateScoreList = (list) => {
     if (list.length < 10) {

@@ -1,5 +1,6 @@
 import { createBoard, formEmptyBoard } from "./board";
 import { startTimer, stopTimer } from "./timer";
+import { saveToStore } from "./score";
 
 const boardContainerEl = document.querySelector(".board__container"),
     boardGreetingEl = document.querySelector(".board__greeting"),
