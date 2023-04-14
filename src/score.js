@@ -14,7 +14,7 @@ tabContainer.addEventListener("click", (e) => {
         return;
     }
     removeActiveClassFromTabButtons();
-    chosenDifficulty = el.textContent.toLowerCase();
+    chosenDifficulty = el.textContent;
     el.classList.add("active");
 });
 
@@ -23,15 +23,40 @@ const removeActiveClassFromTabButtons = () => {
 };
 
 const updateScoreList = (list) => {
-    if (list.length < 10) {
-    }
+    renderContent(list.filter((el) => el.difficulty === chosenDifficulty));
+    renderPagination(list.length);
 };
 
 const renderContent = (content) => {
-    contentContainer.textContent = content;
+    const arrToRender = content
+        .map((el) => {
+            return `<li class="content__item">
+        <div class="content__column">${content.name}</div>
+        <div class="content__column">${content.time}</div>
+        <div class="content__column">${content.moves}</div>
+    </li>`;
+        })
+        .join("");
+    contentContainer.innerHTML = arrToRender;
 };
 
-const renderPagination = () => {};
+const renderPagination = (number) => {
+    let pagination = "";
+    if (number === 0) {
+        hideArrows();
+        pagination = "";
+    }
+    if (number <= 6) {
+        showArrows();
+        pagination = new Array(number)
+            .map((_, i) => {
+                return `<button class="pagination__item ${i === 0 ? "active" : ""}">${i + 1}</button>`;
+            })
+            .join("");
+    }
+
+    paginationContainer.innerHTML = pagination;
+};
 
 /**
  *
@@ -50,7 +75,7 @@ export const saveToStore = (entry) => {
 };
 
 export const retrieveFromStore = () => {
-    score = JSON.parse(localStorage.getItem("score"));
+    score = JSON.parse(localStorage.getItem("score")) ?? [];
     updateScoreList(score);
 };
 
