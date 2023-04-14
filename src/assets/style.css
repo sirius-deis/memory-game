@@ -358,6 +358,13 @@ body {
     color: var(--bg);
     cursor: pointer;
     transition: background-color 0.3s;
+    transition: all ease-in 0.5s;
+}
+
+.tab__btn.active {
+    color: var(--text);
+    background-color: var(--mediumBtn-darker);
+    box-shadow: 1px 2px 5px var(--shadow);
 }
 
 .tab__btn:hover {

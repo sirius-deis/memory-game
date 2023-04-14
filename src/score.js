@@ -1,4 +1,5 @@
 const tabContainer = document.querySelector(".tab"),
+    tabButtons = tabContainer.querySelectorAll(".tab__btn"),
     contentContainer = document.querySelector(".content__list"),
     leftArrow = document.querySelector(".pagination").firstElementChild,
     rightArrow = document.querySelector(".pagination").lastElementChild,
@@ -12,9 +13,14 @@ tabContainer.addEventListener("click", (e) => {
     if (!el) {
         return;
     }
+    removeActiveClassFromTabButtons();
     chosenDifficulty = el.textContent.toLowerCase();
-    console.log(chosenDifficulty);
+    el.classList.add("active");
 });
+
+const removeActiveClassFromTabButtons = () => {
+    tabButtons.forEach((btn) => btn.classList.remove("active"));
+};
 
 const updateScoreList = (list) => {
     if (list.length < 10) {
