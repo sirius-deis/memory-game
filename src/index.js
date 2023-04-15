@@ -1,6 +1,7 @@
 import { createBoard, formEmptyBoard } from "./board";
 import { startTimer, stopTimer, getTime } from "./timer";
 import { saveToStore, retrieveFromStoreAndUpdate } from "./score";
+import { getName } from "./data";
 
 const boardContainerEl = document.querySelector(".board__container"),
     boardGreetingEl = document.querySelector(".board__greeting"),
@@ -12,9 +13,7 @@ const boardContainerEl = document.querySelector(".board__container"),
     difficultBtn = document.querySelector(".difficultBtn"),
     resetBtn = document.querySelector(".resetBtn"),
     dialog = document.querySelector(".dialog"),
-    moves = document.querySelector(".moves"),
-    dataInput = document.querySelector(".data__input"),
-    leftType = document.querySelector(".left__type");
+    moves = document.querySelector(".moves");
 
 let emojiList = "",
     difficulty = "easy",
@@ -89,7 +88,7 @@ const increaseMoves = (isEnd) => {
         stopTimer();
         blurBoard();
         showWinMsg();
-        const name = dataInput.value;
+        const name = getName();
         saveToStore({ difficulty, name, time: getTime(), moveAmount });
     }
 };
@@ -121,10 +120,6 @@ dialog.querySelector(".dialog__yes").addEventListener("click", () => {
 
 dialog.querySelector(".dialog__no").addEventListener("click", () => {
     hideDialog();
-});
-
-leftType.addEventListener("click", () => {
-    leftType.classList.toggle("open");
 });
 
 const showWinMsg = () => {
