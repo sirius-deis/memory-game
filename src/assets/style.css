@@ -150,6 +150,11 @@ body {
     box-shadow: 1px 2px 4px var(--shadow);
 }
 
+.center {
+    height: 97vh;
+    position: relative;
+}
+
 .board__easy {
     grid-template-columns: repeat(4, var(--card-width));
     grid-template-rows: repeat(4, var(--card-height));
@@ -217,6 +222,7 @@ body {
 .btn__panel {
     display: flex;
     justify-content: center;
+    align-items: center;
     gap: 2rem;
     position: absolute;
     left: 50%;
@@ -344,16 +350,17 @@ body {
 .wrapper {
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
     min-width: 35rem;
 }
 
 .tab {
-    width: 100%;
     background-color: var(--mediumBtn);
 }
 
 .tab__btn {
-    padding: 0.5rem 2.7rem;
+    padding: 0.5rem 3.1rem;
     border: 0;
     background-color: transparent;
     font-size: 2rem;
@@ -393,7 +400,7 @@ body {
 
 .content__item {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, calc(375.5px / 3));
     justify-items: center;
     gap: 0.5rem;
     padding: 1rem 0;
@@ -435,4 +442,124 @@ body {
 .pagination__item.active {
     background-color: var(--mediumBtn);
     color: var(--bg);
+}
+
+.burger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    position: fixed;
+    top: 30px;
+    right: 30px;
+    cursor: pointer;
+}
+
+.burger div {
+    width: 33px;
+    height: 4px;
+    background-color: var(--bg-dark);
+    transition: all 0.3s;
+}
+
+.burger div:first-child {
+    transform-origin: 0%, 0%;
+}
+
+.burger.open div:first-child {
+    transform: rotate(45deg) translate(7px, 7px);
+}
+
+.burger.open div:nth-child(2) {
+    display: none;
+}
+
+.burger div:last-child {
+    transform-origin: 0%, 100%;
+}
+
+.burger.open div:last-child {
+    transform: rotate(-45deg);
+}
+
+@media screen and (max-width: 1820px) {
+    :root {
+        --card-width: 6rem;
+        --card-height: 9rem;
+    }
+    .container {
+        grid-template-areas: "left center center center center center";
+    }
+    .left {
+        grid-area: left;
+    }
+    .center {
+        grid-area: center;
+    }
+    .wrapper {
+        position: fixed;
+        opacity: 0;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        background-color: var(--shadow);
+        backdrop-filter: blur(10px);
+        transform: translateX(1500px);
+        transition: transform 0.4s, opacity 0.3s;
+    }
+    .content {
+        background-color: var(--bg);
+    }
+    .burger {
+        display: flex;
+        z-index: 9999;
+    }
+    .burger.open + .wrapper {
+        opacity: 1;
+        transform: translateX(0);
+    }
+    .card__back {
+        font-size: 4rem;
+    }
+    .board__container {
+        gap: 0.9rem;
+        padding: 1.5rem;
+    }
+}
+
+@media screen and (max-width: 1300px) {
+    .container {
+        grid-template-areas: "center center center";
+    }
+    .left {
+        display: none;
+    }
+    .card__back {
+        font-size: 3.5rem;
+    }
+    .board__container {
+        gap: 0.7rem;
+        padding: 1rem;
+    }
+}
+
+@media screen and (max-width: 950px) {
+    :root {
+        --card-width: 5rem;
+        --card-height: 7rem;
+    }
+    .card__back {
+        font-size: 3rem;
+    }
+    .board__container {
+        gap: 0.5rem;
+        padding: 0.8rem;
+    }
+}
+
+@media screen and (max-width: 780px) {
+    :root {
+        --card-width: 4rem;
+        --card-height: 6rem;
+    }
 }

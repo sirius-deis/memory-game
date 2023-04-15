@@ -5,7 +5,8 @@ const tabContainer = document.querySelector(".tab"),
     contentContainer = document.querySelector(".content__list"),
     leftArrow = document.querySelector(".pagination").firstElementChild,
     rightArrow = document.querySelector(".pagination").lastElementChild,
-    paginationContainer = document.querySelector(".pagination__numbers");
+    paginationContainer = document.querySelector(".pagination__numbers"),
+    burgerEl = document.querySelector(".burger");
 
 let score = [];
 let chosenDifficulty = "easy";
@@ -187,3 +188,7 @@ const hideArrows = () => {
     leftArrow.classList.add("hidden");
     rightArrow.classList.add("hidden");
 };
+
+burgerEl.addEventListener("click", () => {
+    burgerEl.classList.toggle("open");
+});
