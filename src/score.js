@@ -79,7 +79,7 @@ const renderContent = (content) => {
 
 const renderPagination = (number) => {
     let pagination = "";
-    if (number > 0 && number <= 7) {
+    if (number >= 0 && number <= 7) {
         if (number === 0) {
             pagination = "";
             hideArrows();
