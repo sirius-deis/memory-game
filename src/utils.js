@@ -1,7 +1,7 @@
 export const formatTime = (time) => {
     const seconds = time % 60;
-    const minutes = Math.trunc(time / 60);
-    const hours = Math.trunc(time / (60 * 60));
+    const minutes = Math.trunc(time / 60) % 60;
+    const hours = Math.trunc(time / (60 * 60)) % 24;
     return `${hours != 0 ? `${addZeroBeforeIfRequired(hours)}:` : ""}${addZeroBeforeIfRequired(
         minutes
     )}:${addZeroBeforeIfRequired(seconds)}`;

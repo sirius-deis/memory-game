@@ -57,7 +57,7 @@ const removeActiveClassFromTabButtons = () => {
 };
 
 const updateScoreList = (list) => {
-    const filteredList = list.filter((el) => el.difficulty === chosenDifficulty);
+    const filteredList = list.filter((el) => el.difficulty === chosenDifficulty).sort(sortContent);
     const listToRender = [...filteredList].splice((activePagination - 1) * 10, 10);
     renderContent(listToRender);
     amountOfEntry = Math.ceil(filteredList.length / 10);
@@ -75,6 +75,20 @@ const renderContent = (content) => {
         })
         .join("");
     contentContainer.innerHTML = arrToRender;
+};
+
+const sortContent = (content1, content2) => {
+    if (content1.time > content2.time) {
+        return 1;
+    } else if (content1.time < content2.time) {
+        return -1;
+    } else if (content1.moveAmount > content2.moveAmount) {
+        return 1;
+    } else if (content1.moveAmount < content2.moveAmount) {
+        return -1;
+    } else {
+        return 0;
+    }
 };
 
 const renderPagination = (number) => {
