@@ -40,6 +40,7 @@ body {
     height: 100%;
     position: relative;
     padding: 2rem 0;
+    min-height: 100%;
 }
 
 .left {
@@ -62,6 +63,12 @@ body {
 .data__input {
     padding: 0.5rem;
     font-size: 1.5rem;
+}
+
+.center {
+    display: grid;
+    grid-template-rows: 1fr 1fr 11fr 1fr;
+    position: relative;
 }
 
 .header {
@@ -139,20 +146,21 @@ body {
     }
 }
 
+.board_wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .board__container {
     display: grid;
-    justify-items: center;
-    align-items: center;
+    justify-content: center;
+    align-content: center;
     gap: 1rem;
-    margin: 0 auto;
     padding: 2rem;
     background-color: var(--back);
     box-shadow: 1px 2px 4px var(--shadow);
-}
-
-.center {
-    height: 97vh;
-    position: relative;
+    border-radius: 10px;
 }
 
 .board__easy {
@@ -223,11 +231,9 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
     gap: 2rem;
-    position: absolute;
-    left: 50%;
     bottom: 2rem;
-    transform: translateX(-50%);
 }
 
 .easyBtn,
@@ -295,7 +301,7 @@ body {
     display: flex;
     flex-direction: column;
     position: absolute;
-    top: 20%;
+    top: 30%;
     left: 50%;
     padding: 1rem 3rem;
     transform: translate(-50%, -50%);
@@ -548,6 +554,13 @@ body {
         --card-width: 5rem;
         --card-height: 7rem;
     }
+    .header {
+        font-size: 2.5rem;
+    }
+    .timer,
+    .moves {
+        font-size: 1.4rem;
+    }
     .card__back {
         font-size: 3rem;
     }
@@ -555,11 +568,45 @@ body {
         gap: 0.5rem;
         padding: 0.8rem;
     }
+    .easyBtn,
+    .mediumBtn,
+    .difficultBtn,
+    .resetBtn {
+        width: 15rem;
+        margin-top: 2rem;
+        padding: 0.5rem 2rem;
+    }
 }
 
 @media screen and (max-width: 780px) {
     :root {
         --card-width: 4rem;
         --card-height: 6rem;
+    }
+    .header {
+        font-size: 2rem;
+    }
+    .timer,
+    .moves {
+        font-size: 1.2rem;
+    }
+}
+
+@media screen and (max-width: 550px) {
+    :root {
+        --card-width: 3rem;
+        --card-height: 5rem;
+    }
+    .easyBtn,
+    .mediumBtn,
+    .difficultBtn,
+    .resetBtn {
+        width: 10rem;
+        margin-top: 2rem;
+        padding: 0.3rem 1.5rem;
+    }
+    .tab__btn {
+        padding: 0.5rem 3rem;
+        font-size: 1.8rem;
     }
 }

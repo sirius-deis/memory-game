@@ -1,19 +1,23 @@
 const boardContainer = document.querySelector(".board__container"),
     cardTemplate = boardContainer.querySelector(".card__template");
 
+const options = {
+    easy: [4, 4],
+    medium: [8, 5],
+    difficult: [14, 6],
+};
+
 let chosenCards = [];
 let amountOfCells;
 let increaseFunction;
 
 export const createBoard = (set, difficulty, increaseMoves) => {
-    const computed = window.getComputedStyle(boardContainer);
-    const widthOfGrid = computed.getPropertyValue("grid-template-columns").split(" ").length;
-    const heightGrid = computed.getPropertyValue("grid-template-rows").split(" ").length;
-    amountOfCells = widthOfGrid * heightGrid;
+    const chosenDifficulty = options[difficulty];
+    amountOfCells = chosenDifficulty[0] * chosenDifficulty[1];
     increaseFunction = increaseMoves;
     const cardsSet = chooseCardsFromSet(set, amountOfCells / 2);
     const doubledCardSetShuffled = sortRandomly(cardsSet.concat(cardsSet));
-    formCards(doubledCardSetShuffled, widthOfGrid);
+    formCards(doubledCardSetShuffled, chosenDifficulty[0]);
 };
 
 export const formEmptyBoard = () => {
