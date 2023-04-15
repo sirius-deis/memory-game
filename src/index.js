@@ -13,7 +13,8 @@ const boardContainerEl = document.querySelector(".board__container"),
     resetBtn = document.querySelector(".resetBtn"),
     dialog = document.querySelector(".dialog"),
     moves = document.querySelector(".moves"),
-    dataInput = document.querySelector(".data__input");
+    dataInput = document.querySelector(".data__input"),
+    leftType = document.querySelector(".left__type");
 
 let emojiList = "",
     difficulty = "easy",
@@ -120,6 +121,10 @@ dialog.querySelector(".dialog__yes").addEventListener("click", () => {
 
 dialog.querySelector(".dialog__no").addEventListener("click", () => {
     hideDialog();
+});
+
+leftType.addEventListener("click", () => {
+    leftType.classList.toggle("open");
 });
 
 const showWinMsg = () => {

@@ -44,7 +44,9 @@ body {
 }
 
 .left {
-    margin: 100% auto;
+    display: flex;
+    align-items: center;
+    margin: 0 auto;
 }
 
 .data {
@@ -366,7 +368,8 @@ body {
 }
 
 .tab__btn {
-    padding: 0.5rem 3.1rem;
+    width: calc(375.5px / 3);
+    padding: 0.5rem 3rem;
     border: 0;
     background-color: transparent;
     font-size: 2rem;
@@ -393,7 +396,7 @@ body {
 .desc {
     margin-top: 1rem;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, calc(375.5px / 3));
     justify-items: center;
     padding: 0.3rem;
     font-size: 1.5rem;
@@ -487,8 +490,17 @@ body {
     transform: rotate(-45deg);
 }
 
+.left__type {
+    display: none;
+    position: fixed;
+    top: 1rem;
+    left: 1rem;
+    cursor: pointer;
+}
+
 @media screen and (max-width: 1820px) {
     :root {
+        font-size: 56.25%;
         --card-width: 6rem;
         --card-height: 9rem;
     }
@@ -537,9 +549,36 @@ body {
     .container {
         grid-template-areas: "center center center";
     }
+    .left__type {
+        display: block;
+        z-index: 11;
+    }
     .left {
+        position: fixed;
+        top: 1rem;
+        left: 0.5rem;
+        z-index: 100;
+    }
+
+    .data {
+        transform: translateY(-200px);
+        opacity: 0;
+        transition: transform 0.4s, opacity 0.3s;
+    }
+
+    .left__type.open + .data {
+        transform: translateY(0);
+        opacity: 1;
+    }
+
+    .data__label {
         display: none;
     }
+
+    .data__input {
+        width: 10rem;
+    }
+
     .card__back {
         font-size: 3.5rem;
     }
@@ -549,7 +588,7 @@ body {
     }
 }
 
-@media screen and (max-width: 950px) {
+@media screen and (max-width: 900px) {
     :root {
         --card-width: 5rem;
         --card-height: 7rem;
@@ -578,7 +617,7 @@ body {
     }
 }
 
-@media screen and (max-width: 780px) {
+@media screen and (max-width: 700px) {
     :root {
         --card-width: 4rem;
         --card-height: 6rem;
@@ -590,9 +629,21 @@ body {
     .moves {
         font-size: 1.2rem;
     }
+    .burger {
+        top: 15px;
+        right: 15px;
+        gap: 3px;
+    }
+    .burger div {
+        width: 22px;
+        height: 3px;
+    }
+    .burger.open div:first-child {
+        transform: rotate(45deg) translate(4px, 4px);
+    }
 }
 
-@media screen and (max-width: 550px) {
+@media screen and (max-width: 600px) {
     :root {
         --card-width: 3rem;
         --card-height: 5rem;
@@ -604,9 +655,29 @@ body {
         width: 10rem;
         margin-top: 2rem;
         padding: 0.3rem 1.5rem;
+        font-size: 0.9rem;
     }
     .tab__btn {
         padding: 0.5rem 3rem;
+        font-size: 1.8rem;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    :root {
+        --card-width: 2rem;
+        --card-height: 3rem;
+    }
+    .easyBtn,
+    .mediumBtn,
+    .difficultBtn,
+    .resetBtn {
+        width: 6rem;
+        margin-top: 1rem;
+        padding: 0.3rem 1.2rem;
+    }
+    .tab__btn {
+        padding: 0.5rem 2.5rem;
         font-size: 1.8rem;
     }
 }
