@@ -1,6 +1,6 @@
 import { createBoard, formEmptyBoard } from "./board";
-import { startTimer, stopTimer } from "./timer";
-import { saveToStore } from "./score";
+import { startTimer, stopTimer, getTime } from "./timer";
+import { saveToStore, retrieveFromStoreAndUpdate } from "./score";
 
 const boardContainerEl = document.querySelector(".board__container"),
     boardGreetingEl = document.querySelector(".board__greeting"),
@@ -88,6 +88,8 @@ const increaseMoves = (isEnd) => {
         stopTimer();
         blurBoard();
         showWinMsg();
+        const name = dataInput.value;
+        saveToStore({ difficulty, name, time: getTime(), moveAmount });
     }
 };
 
@@ -146,6 +148,7 @@ const fetchEmojiList = async (url) => {
     emojiList = data;
     hideLoader();
     formEmptyBoard();
+    retrieveFromStoreAndUpdate();
 };
 
 const start = () => {

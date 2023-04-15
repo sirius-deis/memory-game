@@ -4,7 +4,7 @@ const boardContainer = document.querySelector(".board__container"),
 const options = {
     easy: [4, 4],
     medium: [8, 5],
-    difficult: [15, 6],
+    difficult: [14, 6],
 };
 
 let chosenCards = [];
