@@ -1,7 +1,8 @@
 import { createBoard, formEmptyBoard } from "./board";
 import { startTimer, stopTimer, getTime } from "./timer";
 import { saveToStore, retrieveFromStoreAndUpdate } from "./score";
-import { getName } from "./data";
+import { getName, setName } from "./data";
+import { checkIfItsBlank } from "./utils";
 
 const boardContainerEl = document.querySelector(".board__container"),
     boardGreetingEl = document.querySelector(".board__greeting"),
@@ -13,11 +14,13 @@ const boardContainerEl = document.querySelector(".board__container"),
     difficultBtn = document.querySelector(".difficultBtn"),
     resetBtn = document.querySelector(".resetBtn"),
     dialog = document.querySelector(".dialog"),
-    moves = document.querySelector(".moves");
+    moves = document.querySelector(".moves"),
+    errorEl = document.querySelector(".error");
 
 let emojiList = "",
     difficulty = "easy",
-    moveAmount = 0;
+    moveAmount = 0,
+    name = "";
 
 const resetPanel = () => {
     btnPanel.classList.remove("focus");
@@ -88,9 +91,40 @@ const increaseMoves = (isEnd) => {
         stopTimer();
         blurBoard();
         showWinMsg();
-        const name = getName();
-        saveToStore({ difficulty, name, time: getTime(), moveAmount });
+        try {
+            name = getName();
+            saveToStore({ difficulty, name, time: getTime(), moveAmount });
+            hideResetBtn();
+            showDifficultyButtons();
+        } catch (error) {
+            showErrorMsg();
+        }
     }
+};
+
+errorEl.querySelector(".error__confirm").addEventListener("click", () => {
+    try {
+        name = checkIfItsBlank(errorEl.querySelector(".error__input").value);
+        setName(name);
+        saveToStore({ difficulty, name, time: getTime(), moveAmount });
+        hideErrorMsg();
+    } catch (error) {
+        return;
+    }
+});
+
+errorEl.querySelector(".error__discard").addEventListener("click", () => {
+    hideErrorMsg();
+});
+
+const showErrorMsg = () => {
+    errorEl.classList.remove("hidden");
+    hideResetBtn();
+};
+
+const hideErrorMsg = () => {
+    errorEl.classList.add("hidden");
+    showDifficultyButtons();
 };
 
 [easyBtn, mediumBtn, difficultBtn].forEach((btn) => {

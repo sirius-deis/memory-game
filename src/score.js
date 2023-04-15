@@ -127,6 +127,7 @@ const renderPagination = (number) => {
                     }</button>`;
                 })
                 .join("");
+            showArrows();
         } else if (activePagination > number - 4) {
             pagination = new Array(7)
                 .fill(0)
@@ -142,6 +143,7 @@ const renderPagination = (number) => {
                     }">${number - arr.length + i + 1}</button>`;
                 })
                 .join("");
+            showArrows();
         } else {
             pagination = new Array(7)
                 .fill(0)
@@ -164,6 +166,7 @@ const renderPagination = (number) => {
                     return `<button class="pagination__item active">${activePagination}</button>`;
                 })
                 .join("");
+            showArrows();
         }
     }
     paginationContainer.innerHTML = pagination;

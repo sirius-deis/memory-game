@@ -10,3 +10,11 @@ export const formatTime = (time) => {
 export const addZeroBeforeIfRequired = (number) => {
     return number < 10 ? `0${number}` : number;
 };
+
+export const checkIfItsBlank = (string) => {
+    if (string.trim().length !== 0) {
+        return string;
+    }
+
+    throw new Error("Field can't be blank");
+};

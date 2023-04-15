@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Serif&display=swap");
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -26,8 +28,8 @@
 
 body {
     background-color: var(--bg);
-    height: 100vh;
     color: var(--text);
+    font-family: "IBM Plex Serif", serif;
 }
 
 .hidden {
@@ -39,7 +41,7 @@ body {
     grid-template-columns: 0.7fr 4fr 1.2fr;
     height: 100%;
     position: relative;
-    padding: 2rem 0;
+    padding: 1rem 0;
     min-height: 100%;
 }
 
@@ -74,7 +76,7 @@ body {
 }
 
 .header {
-    margin-bottom: 3rem;
+    margin-bottom: 2.5rem;
     font-size: 3rem;
     text-align: center;
 }
@@ -298,7 +300,8 @@ body {
     filter: brightness(0.4);
 }
 
-.dialog {
+.dialog,
+.error {
     width: 30rem;
     display: flex;
     flex-direction: column;
@@ -309,6 +312,7 @@ body {
     transform: translate(-50%, -50%);
     background-color: var(--bg-dark);
     border-radius: 10px;
+    gap: 1rem;
 }
 
 .dialog__text {
@@ -344,6 +348,44 @@ body {
 }
 
 .dialog__no:hover {
+    background-color: var(--difficultBtn-darker);
+}
+
+.error__input {
+    padding: 0.5rem;
+    background-color: transparent;
+    border: 0;
+    color: var(--back);
+    font-size: 1.8rem;
+    text-align: center;
+}
+
+.btn__container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.error__confirm,
+.error__discard {
+    padding: 0.2rem 1.5rem;
+    border: 0;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.error__confirm {
+    background-color: var(--easyBtn);
+}
+
+.error__confirm:hover {
+    background-color: var(--easyBtn-darker);
+}
+
+.error__discard {
+    background-color: var(--difficultBtn);
+}
+
+.error__discard:hover {
     background-color: var(--difficultBtn-darker);
 }
 
