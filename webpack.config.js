@@ -38,6 +38,14 @@ module.exports = {
                     from: path.resolve(__dirname, "src", "assets"),
                     to: "public/",
                 },
+                {
+                    from: path.resolve(__dirname, "src", "manifest.json"),
+                    to: "",
+                },
+                {
+                    from: path.resolve(__dirname, "src", "sw.js"),
+                    to: "",
+                },
             ],
         }),
     ],
