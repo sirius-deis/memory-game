@@ -145,27 +145,15 @@ const renderPagination = (number) => {
                 .join("");
             showArrows();
         } else {
-            pagination = new Array(7)
-                .fill(0)
-                .map((_, i) => {
-                    if (i === 0) {
-                        return `<button class="pagination__item">${1}</button>`;
-                    }
-                    if (i === 1 || i === 5) {
-                        return `<button class="pagination__dot">...</button>`;
-                    }
-                    if (i === 6) {
-                        return `<button class="pagination__item">${number}</button>`;
-                    }
-                    if (i === 2) {
-                        return `<button class="pagination__item">${activePagination - 1}</button>`;
-                    }
-                    if (i === 4) {
-                        return `<button class="pagination__item">${activePagination + 1}</button>`;
-                    }
-                    return `<button class="pagination__item active">${activePagination}</button>`;
-                })
-                .join("");
+            pagination = `
+                <button class="pagination__item">${1}</button>
+                <button class="pagination__dot">...</button>
+                <button class="pagination__item">${activePagination - 1}</button>
+                <button class="pagination__item active">${activePagination}</button>
+                <button class="pagination__item">${activePagination + 1}</button>
+                <button class="pagination__dot">...</button>
+                <button class="pagination__item">${number}</button>
+            `;
             showArrows();
         }
     }
